@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhxx.service.szxt.mapper.AssessFunMapper">
+  <resultMap id="BaseResultMap" type="com.zhxx.service.szxt.entity.AccessModelOptionCommonEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="applicablegrade" jdbcType="VARCHAR" property="applicablegrade" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="modelLevel" jdbcType="VARCHAR" property="modelLevel" />
+    <result column="required" jdbcType="VARCHAR" property="required" />
+    <result column="open_close_state" jdbcType="VARCHAR" property="openCloseState" />
+    <result column="standbyfield1" jdbcType="VARCHAR" property="standbyfield1" />
+    <result column="standbyfield2" jdbcType="VARCHAR" property="standbyfield2" />
+    <result column="standbyfield3" jdbcType="VARCHAR" property="standbyfield3" />
+    <result column="standbyfield4" jdbcType="VARCHAR" property="standbyfield4" />
+    <result column="standbyfield5" jdbcType="VARCHAR" property="standbyfield5" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="lastoperator" jdbcType="VARCHAR" property="lastoperator" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="applicablegradeName" jdbcType="VARCHAR" property="applicablegradeName" />
+    <result column="categoryName" jdbcType="VARCHAR" property="categoryName" />
+    <result column="modellevelName" jdbcType="VARCHAR" property="modellevelName" />
+    <result column="requiredName" jdbcType="VARCHAR" property="requiredName" />
+    <result column="openCloseStateName" jdbcType="VARCHAR" property="openCloseStateName" />
+    <result column="modelOptionOrder" jdbcType="VARCHAR" property="modelOptionOrder" />
+    <result column="modelOptionComment" jdbcType="VARCHAR" property="modelOptionComment" />
+    <result column="modelOptionScore" jdbcType="VARCHAR" property="modelOptionScore" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <collection property="optionList" ofType="com.zhxx.service.szxt.entity.AccessOptionEntity">
+             <id column="optionid" jdbcType="VARCHAR" property="id" />
+		    <result column="option_order" jdbcType="VARCHAR" property="optionOrder" />
+		    <result column="option_comment" jdbcType="VARCHAR" property="optionComment" />
+		    <result column="option_score" jdbcType="VARCHAR" property="optionScore" />
+		    <result column="standbyfield1" jdbcType="VARCHAR" property="standbyfield1" />
+		    <result column="standbyfield2" jdbcType="VARCHAR" property="standbyfield2" />
+		    <result column="standbyfield3" jdbcType="VARCHAR" property="standbyfield3" />
+		    <result column="standbyfield4" jdbcType="VARCHAR" property="standbyfield4" />
+		    <result column="standbyfield5" jdbcType="VARCHAR" property="standbyfield5" />
+    </collection>
+    
+  </resultMap>  
+    <select id="queryModelList" parameterType="com.zhxx.service.szxt.entity.AccessModelOptionCommonEntity" resultMap="BaseResultMap">
+        SELECT DISTINCT
+			t.id as id ,
+			t.title as title,
+			t.description as description,
+			t.category as category,
+			t.state as state,
+			d1.val as applicablegradeName,
+			d2.val as categoryName,
+			d3.val as modellevelName,
+			d4.val as requiredName,
+			d5.val as openCloseStateName,
+			t.operator as userId
+		FROM
+			access_model t
+		LEFT JOIN t_dict d1 ON t.applicablegrade = d1.k
+		LEFT JOIN t_dict d2 ON t.category = d2.k
+		LEFT JOIN t_dict d3 ON t.modelLevel = d3.k
+		LEFT JOIN t_dict d4 ON t.required = d4.k
+		LEFT JOIN t_dict d5 ON t.open_close_state = d5.k
+		<where>
+			 <if test="title != null and title!=''" >
+			   t.title LIKE '%${title}%'
+			</if>
+			<if test="applicablegrade != null and applicablegrade!=''">
+			   and t.applicablegrade =  #{applicablegrade,jdbcType=VARCHAR}
+			</if> 
+			 <if test="modelLevel != null and modelLevel!=''">
+			   and t.modelLevel =  #{modelLevel,jdbcType=VARCHAR}
+			</if> 
+			<if test="category != null and category!=''">
+			   and t.category =  #{category,jdbcType=VARCHAR}
+			</if>
+			<if test="required != null and required!=''">
+			   and t.required =  #{required,jdbcType=VARCHAR}
+			</if>
+			<if test="openCloseState != null and openCloseState!=''">
+			   and t.open_close_state =  #{openCloseState,jdbcType=VARCHAR}
+			</if>
+			and t.state = "1"
+		</where>
+		GROUP BY
+			t.id
+		order by 
+		    t.updatetime
+    
+    </select>
+     <select id="queryModelAndOptionList" parameterType="com.zhxx.service.szxt.entity.AccessModelOptionCommonEntity" resultMap="BaseResultMap">
+        SELECT 
+			t.id as id ,
+			t.title as title,
+			t.description as description,
+			t.category as category,
+			t.state as state,
+			d1.val as applicablegradeName,
+			d2.val as categoryName,
+			d3.val as modellevelName,
+			d4.val as requiredName,
+			d5.val as openCloseStateName,
+			o.id as optionid,
+			o.option_order as option_order,
+            o.option_comment as option_comment
+		FROM
+			access_model t
+	    LEFT JOIN access_model_option mor on t.id = mor.model_id
+	    LEFT JOIN access_option o on mor.option_id = o.id
+		LEFT JOIN t_dict d1 ON t.applicablegrade = d1.k
+		LEFT JOIN t_dict d2 ON t.category = d2.k
+		LEFT JOIN t_dict d3 ON t.modelLevel = d3.k
+		LEFT JOIN t_dict d4 ON t.required = d4.k
+		LEFT JOIN t_dict d5 ON t.open_close_state = d5.k
+		<where>
+			 <if test="title != null and title!=''" >
+			   t.title LIKE '%${title}%'
+			</if>
+			<if test="applicablegrade != null and applicablegrade!=''">
+			   and (t.applicablegrade =  #{applicablegrade,jdbcType=VARCHAR} or t.applicablegrade = '50')
+			</if> 
+			<if test="modelLevel != null and modelLevel!=''">
+			   and t.modelLevel =  #{modelLevel,jdbcType=VARCHAR}
+			</if> 
+			<if test="category != null and category!=''">
+			   and t.category =  #{category,jdbcType=VARCHAR}
+			</if>
+			<if test="required != null and required!=''">
+			   and t.required =  #{required,jdbcType=VARCHAR}
+			</if>
+			<if test="openCloseState != null and openCloseState!=''">
+			   and t.open_close_state =  #{openCloseState,jdbcType=VARCHAR}
+			</if>
+			and t.state = "1"
+			and t.open_close_state ="31"		
+		</where>
+		ORDER BY t.category,t.createtime,o.option_order
+    
+    </select>
+  </mapper>

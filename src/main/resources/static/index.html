@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-CN" xml:lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title >前后端整合系统</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="layui/css/global.css" media="all"/>
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css" media="all"/>
+    <link rel="shortcut icon" href="img/logo/logo.png" type="image/x-icon"/>
+    <link rel="icon" href="img/logo/logo.png" type="image/x-icon"/>
+    <style>
+        .layuiadmin-card-status li h3 {
+            padding-bottom: 5px;
+            font-weight: 700;
+        }
+
+        body {
+            position: fixed;width: 100%;height: 100%;background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-image: url('img/background/background-index.png');opacity: 1;z-index: -89;top: 0"
+        }
+/*dd{*/
+/*    background: url("img/background/background-index.png");*/
+/*}*/
+    </style>
+
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin" style="background-color:#2A3F54">
+    <!-- 标题栏 -->
+    <div class="layui-header header header-demo" style="box-shadow: 1px 1px 2px 1px #c4c4c4;background: url('img/background/title.png');
+            background-position: center;
+            background-size: cover;    ">
+        <div class="layui-main">
+
+            <div class="admin-login-box" style="margin-left: 44%;">
+                <a class="logo" style="left: 0;" href="javascript:;">
+                    <span style="font-size: 27px; color: #767676;text-shadow:2px 2px 0px #fff;line-height: 0.5">前后端整合系统</span>
+                </a>
+            </div>
+            <ul class="layui-nav" pc>
+                <li class="layui-nav-item" pc>
+                    <a href="javascript:;" class="admin-header-user">
+                        <div style="background: black;">
+                            <canvas style="margin-top: 6%;margin-left: -6%;border-radius: 25px;display: block;width: 50px;height: 50px;float: left" id="c"></canvas>
+                        <span style="color: #ffffff;float: right"></span>
+                        </div>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd style="background-color: #d1d1d1">
+                            <a href='javascript:;' lay-id="-999" data-url="pages/user/updateMyself.html"><i
+                                    class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
+                        </dd>
+                        <dd style="background-color: #d1d1d1">
+                            <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 退出</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 菜单 -->
+    <div class="layui-side layui-bg-black" id="admin-side" style="background: url('img/background/background-index.png')">
+        <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side">
+            <ul id="menu" class="layui-nav layui-nav-tree" lay-filter="demo" style="background: url('img/background/background-index.png')">
+
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body" style="bottom: 0;border-left: solid 0px #1AA094;" id="admin-body">
+        <div class="layui-tab admin-nav-card layui-tab-brief" lay-allowClose="true" lay-filter="admin-tab">
+            <ul class="layui-tab-title nav nav-tabs">
+                <li class="layui-this" id="welcome">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <cite>欢迎页</cite>
+                </li>
+            </ul>
+            <div class="layui-tab-content" style="min-height: 150px; padding: 0px 0 0 0;">
+                <!--菜单的显示和隐藏按钮-->
+                <div class="menu_change" title="隐藏菜单">
+                    <i id="biaozhi" style="margin-left: 4px" class="fa fa-chevron-left" aria-hidden="true"></i>
+                </div>
+                <div class="layui-tab-item layui-show">
+                    <iframe src="pages/dashboard.html" style="border-radius: 8px;box-shadow: rgb(196, 196, 196) 0px 2px 3px 2px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-footer footer footer-demo" id="admin-footer">
+        <div>
+            <p style="color: #c6f0d2"><a href="http://www.aimaonline.cn" style="color: #c6f0d2">沈阳哲航信息科技有限公司</a>&nbsp;&copy;爱码架构</p>
+        </div>
+    </div>
+    <div class="site-tree-mobile layui-hide">
+        <i class="layui-icon">&#xe602;</i>
+    </div>
+    <div class="site-mobile-shade"></div>
+    <script type="text/javascript" src="js/libs/jquery-2.1.1.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jq.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</div>
+</body>
+//代码雨
+<script>
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+c.height = window.innerHeight;
+c.width = window.innerWidth;
+var chinese = "54321564856489745646548951564895";
+chinese = chinese.split("");
+var font_size = 10;
+var columns = c.width/font_size; //number of columns for the rain
+var drops = [];
+for(var x = 0; x < columns; x++)
+    drops[x] = 1;
+function draw()
+{
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, c.width, c.height);
+    ctx.fillStyle = "#0F0"; //green text
+    ctx.font = font_size + "px arial";
+    for(var i = 0; i < drops.length; i++)
+    {
+        var text = chinese[Math.floor(Math.random()*chinese.length)];
+        ctx.fillText(text, i*font_size, drops[i]*font_size);
+        if(drops[i]*font_size > c.height && Math.random() > 0.975)
+            drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(draw, 33);
+</script>
+<script>
+    getUserId();
+    function getUserId() {
+        var userId = sessionStorage.getItem("userId");
+        if (userId == undefined || userId == "") {
+            layer.alert('请重新登录后再执行操作')
+        }
+    }
+    $(function () {
+        $('body .layui-nav-itemed .layui-nav-child, body .layui-side-scroll .layui-nav, body .layui-bg-black').css({
+            // "background-color": "#ffffff",
+        })
+
+    })
+</script>
+</html>

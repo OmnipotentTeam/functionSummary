@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhxx.service.szxt.mapper.GrowthPlannEntityMapper">
+  <resultMap id="BaseResultMap" type="com.zhxx.service.szxt.entity.GrowthPlanCommonEntity">
+    <id column="planningId" jdbcType="VARCHAR" property="planningId" />
+    <result column="studentId" jdbcType="VARCHAR" property="studentId" />
+    <result column="studenGrade" jdbcType="VARCHAR" property="studenGrade" />
+    <result column="commentPersonId" jdbcType="VARCHAR" property="commentPersonId" />
+    <result column="commentComtent" jdbcType="TIMESTAMP" property="commentComtent" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="planningModelId" jdbcType="VARCHAR" property="planningModelId" />
+    <result column="planningOptionId" jdbcType="VARCHAR" property="planningOptionId" />
+    <result column="planningOptionState" jdbcType="VARCHAR" property="planningOptionState" />
+    <result column="planningOptionSubmitState" jdbcType="VARCHAR" property="planningOptionSubmitState" />
+    
+    <result column="planningModelTitle" jdbcType="VARCHAR" property="planningModelTitle" />
+    <result column="planningModelApplicablegrade" jdbcType="VARCHAR" property="planningModelApplicablegrade" />
+    <result column="planningModelCategory" jdbcType="VARCHAR" property="planningModelCategory" />
+    <result column="planningModelModelLevel" jdbcType="VARCHAR" property="planningModelModelLevel" />
+    <result column="planningModelOptionOrder" jdbcType="VARCHAR" property="planningModelOptionOrder" />
+    <result column="planningModelOptionComment" jdbcType="VARCHAR" property="planningModelOptionComment" />
+    <result column="growthPlanningId" jdbcType="VARCHAR" property="growthPlanningId" />
+    <result column="studentName" jdbcType="VARCHAR" property="studentName" />
+    <result column="studentNo" jdbcType="VARCHAR" property="studentNo" />
+    <collection property="growthPlanningCommentEntity" ofType="com.zhxx.service.szxt.entity.GrowthPlanningCommentEntity"> 
+            <id column="id" jdbcType="VARCHAR" property="id" />
+		    <result column="relateplanningId" jdbcType="VARCHAR" property="planningId" />
+		    <result column="model_id" jdbcType="VARCHAR" property="modelId" />
+		    <result column="option_id" jdbcType="VARCHAR" property="optionId" />
+		    <result column="finish_state" jdbcType="VARCHAR" property="finishState" />
+		    <result column="submit_state" jdbcType="VARCHAR" property="submitState" />
+		    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+		    <result column="model_title" jdbcType="VARCHAR" property="modelTitle" />
+		    <result column="model_desc" jdbcType="VARCHAR" property="modelDesc" />
+		    <result column="model_category" jdbcType="VARCHAR" property="modelCategory" />
+		    <result column="model_modellevel" jdbcType="VARCHAR" property="modelModellevel" />
+		    <result column="option_comment" jdbcType="VARCHAR" property="optionComment" />
+		    <result column="option_order" jdbcType="VARCHAR" property="optionOrder" />
+		    <result column="option_score" jdbcType="VARCHAR" property="optionScore" />
+    </collection>
+     <collection property="growthOutputEntityList" ofType="com.zhxx.service.szxt.entity.GrowthOutputEntity"> 
+            <id column="outputid" jdbcType="VARCHAR" property="id" />
+		    <result column="outputType" jdbcType="VARCHAR" property="outputType" />
+		    <result column="outputUrl" jdbcType="VARCHAR" property="outputUrl" />
+		    <result column="outputUrlComtent" jdbcType="VARCHAR" property="outputUrlComtent" />
+		     <result column="outputUploadTime" jdbcType="TIMESTAMP" property="outputUploadTime" />
+             <result column="outputcreatetime" jdbcType="TIMESTAMP" property="createtime" />
+             <result column="outputupdatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    </collection>
+  </resultMap>
+      <select id="querygrowthList" parameterType="com.zhxx.service.szxt.entity.GrowthPlanCommonEntity" resultMap="BaseResultMap">
+          SELECT
+			p.planning_id AS planningId,
+			p.studen_id AS studentId,
+			p.studen_grade AS studenGrade,
+			p.comment_person_id AS commentPersonId,
+			p.comment_comtent AS commentComtent,
+			g.id AS id,
+			g.model_id AS modelId,
+			g.option_id AS optionId,
+			g.finish_state AS finish_state,
+			g.submit_state AS submit_state,
+			g.model_title as model_title,
+			g.model_desc as model_desc,
+			t1.val as model_category,
+			t2.val as model_modellevel,
+			g.option_comment as option_comment,
+			g.option_order as option_order,
+			g.option_score as option_score,
+		<!-- 	m.title AS model_title, -->
+			m.applicablegrade AS planningModelApplicablegrade,
+			m.category AS planningModelCategory,
+			m.modelLevel AS planningModelModelLevel,
+			o.option_order AS planningModelOptionOrder,
+			o.option_comment AS planningModelOptionComment
+		FROM
+			growth_planning p
+		LEFT JOIN growth_planning_comment g ON p.planning_id = g.planning_id
+		LEFT JOIN access_model m ON g.model_id = m.id
+		LEFT JOIN access_option o ON g.option_id = o.id
+		LEFT JOIN growth_comment_output po ON g.model_id = po.growth_comment_id
+		LEFT JOIN growth_output go ON go.id = po.output_id
+		LEFT JOIN t_dict t1 on t1.k = g.model_category
+        LEFT JOIN t_dict t2 on t2.k = g.model_modellevel
+		<where>
+		    <if test ="studentId != null and studentId != '' ">
+		        p.studen_id = #{studentId,jdbcType=VARCHAR}
+		    </if>
+		    <if test ="studenGrade != null and studenGrade != '' ">
+		       and p.studen_grade = #{studenGrade,jdbcType=VARCHAR}
+		    </if>
+		    
+		</where>
+
+			      
+      </select>
+      <select id="querygrowthReportList" parameterType="com.zhxx.service.szxt.entity.GrowthPlanCommonEntity" resultMap="BaseResultMap">
+      	select
+      		p.planning_id AS planningId,
+			p.studen_id AS studentId,
+			s.student_name as studentName,
+			s.student_no as studentNo,
+			p.studen_grade AS studenGrade,
+			p.comment_person_id AS commentPersonId,
+			p.comment_comtent AS commentComtent,
+			g.id AS id,
+			g.model_id AS modelId,
+			g.option_id AS optionId,
+			g.finish_state AS finish_state,
+			g.submit_state AS submit_state,
+			g.model_title as model_title,
+			g.model_desc as model_desc,
+			t1.val as model_category,
+			t2.val as model_modellevel,
+			g.option_comment as option_comment,
+			g.option_order as option_order,
+			g.option_score as option_score,
+			p.createtime as createtime
+		FROM
+			growth_planning p
+	    LEFT JOIN student s on s.student_id = p.studen_id 
+		LEFT JOIN growth_planning_comment g ON p.planning_id = g.planning_id
+		LEFT JOIN access_model m ON g.model_id = m.id
+		LEFT JOIN access_option o ON g.option_id = o.id
+		LEFT JOIN growth_comment_output po ON g.model_id = po.growth_comment_id
+		LEFT JOIN growth_output go ON go.id = po.output_id
+		LEFT JOIN t_dict t1 on t1.k = g.model_category
+        LEFT JOIN t_dict t2 on t2.k = g.model_modellevel
+		<where>
+		    <if test ="studentId != null and studentId != '' ">
+		        p.studen_id = #{studentId,jdbcType=VARCHAR}
+		    </if>
+		    <if test ="studenGrade != null and studenGrade != '' ">
+		       and p.studen_grade = #{studenGrade,jdbcType=VARCHAR}
+		    </if>
+		    and g.submit_state = "1"
+		</where>
+		  ORDER BY p.createtime
+      </select>
+      <select id="querygrowthOutputList" parameterType="com.zhxx.service.szxt.entity.GrowthPlanCommonEntity" resultMap="BaseResultMap">
+      
+         SELECT
+            gpc.planning_id as planningId,
+            gco.growth_comment_id as growthPlanningId,
+			go.output_url as outputUrl,
+		    go.output_url_comtent as outputUrlComtent,
+		    go.output_type as outputType
+		FROM
+			growth_output go
+		LEFT JOIN growth_comment_output gco ON go.id = gco.output_id
+		LEFT JOIN growth_planning_comment gpc on  gpc.id = gco.growth_comment_id
+		<where>
+		     <if test="growthPlanningId != null and growthPlanningId != '' ">
+		        gco.growth_comment_id = #{growthPlanningId,jdbcType=VARCHAR}
+		     </if> 
+		 </where>
+      </select>
+  </mapper>

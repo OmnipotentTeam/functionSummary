@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/evaluationManagement/evaluationManagement.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <style>
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            background-color: #009688;
+            border-color: #009688;
+        }
+        .layui-table-tool-self{
+            float: right;
+        }
+        .dataTables_info{
+            display: none;
+        }
+        .table{
+            text-align: center;
+        }
+        .sorting{
+            text-align: center;
+        }
+        .sorting_desc{
+            text-align: center;
+        }
+        .sorting_asc{
+            text-align: center;
+        }
+        .sorting_disabled{
+            text-align: center;
+        }
+        .dataTables_paginate.paging_simple_numbers{
+            position: relative;
+            left: -45%;
+        }
+        .no-records-found td{
+            text-align: center!important;
+        }
+        .form-inline .form-group button {
+            border-radius: 5px;
+            background-color: #84CCC9;
+        }
+        .layui-table-tool-temp .form-inline .form-group button:last-of-type {
+            background-color: #6CC3F7;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+<!--        <div class="layui-card-header">角色列表</div>-->
+        <div class="layui-card-body" style="padding: 15px;">
+            <div style="margin-bottom: 10px">
+                <div class="layui-table-tool-temp">
+                    <form class="form-inline search-collapse " onsubmit="return false" style="padding-top: 15px;">
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="padding: 9px">角色名称</label>
+                            <!--<div class="layui-input-inline">-->
+                                <!--<input type="text" name="taskName" id="taskName" placeholder="请输入" autocomplete="off" class="layui-input">-->
+                            <!--</div>-->
+                        </div>
+                        <div class="form-group">
+                            <!--<input id="name" type="text" class="form-control" placeholder="搜索角色名称" >-->
+                            <input type="text" name="taskName" id="name" placeholder="请输入" autocomplete="off" class="layui-input" style="width:190px;display: inline;height: 33px;border-radius: 5px;">
+                            <button id="searchBt" class="layui-btn layui-btn-sm searchleft" permission="sys:role:query"><i class="layui-icon">&#xe615;</i>搜索</button>
+                            <button class="layui-btn layui-btn-sm" onclick="location.href='addRole.html'" permission="sys:role:add">
+                                <i class="layui-icon">&#xe608;</i> 添加
+                            </button>
+                        </div>
+<!--                        <div class="layui-table-tool-self">-->
+<!--                            <button class="layui-btn layui-btn-sm" onclick="location.href='addRole.html'" permission="sys:role:add">-->
+<!--                                <i class="layui-icon">&#xe608;</i> 添加-->
+<!--                            </button>-->
+<!--                        </div>-->
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="widget-body no-padding">
+                <table id="dt-table" class="table table-striped search-collapse  table-hover" style="width:100%">
+                    <thead>
+                    <tr></tr>
+                    <tr>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">角色名</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">具体描述</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">创建时间</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../js/my/permission.js"></script>
+<script type="text/javascript">
+var pers = checkPermission();
+
+var example;
+function init(){
+	example = 
+    	$('#dt-table').DataTable({
+        	"searching": false,
+        	"processing": false,
+        	"serverSide" : true,
+        	"language": {
+                "url": "/js/plugin/datatables/Chinese.lang"
+            },
+        	"ajax": {
+        		"url" : "/roles",
+        		"type":"get",
+        		"data":function(d){
+    				d.name = $('#name').val();
+        		},
+    			"error":function(xhr, textStatus, errorThrown){
+    				var msg = xhr.responseText;
+    				console.log(msg)
+    			}
+        	},
+        	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'hidden-xs'i>< p v>>",
+            "columns": [
+                { "data": "name", "defaultContent": ""},
+                { "data": "description", "defaultContent": ""},
+                { "data": "createTime", "defaultContent": ""},
+                { 
+                	"data": "", 
+                	"defaultContent": "",
+                	"orderable":false,
+                	"render": function (data, type, row) {
+                		var id = row['id'];
+                		var href = "addRole.html?id=" + id;
+                        var edit = buttonEdit(href, "sys:role:add", pers);
+                		var del = buttonDel(id, "sys:role:del", pers);
+                        return edit + del;
+                  	}
+                },
+            ],
+            "order": [[ 2, "desc" ]]
+        } );
+    setTimeout('if($("td.dataTables_empty").html()!=undefined){$("#dt-table_paginate").css("display","none")}else{$("#dt-table_paginate").css("display","block")}',300);
+}
+
+layui.use('layer', function(){
+    var layer = layui.layer;
+});
+
+function del(id){
+    layer.confirm('确定要删除吗？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        $.ajax({
+            type : 'delete',
+            url : '/roles/'+id,
+            success : function(data) {
+                example.ajax.reload();
+                layer.msg("删除成功");
+            }
+        });
+        
+        layer.close(1);
+    });
+}
+
+$("#searchBt").click(function(){
+	example.ajax.reload();
+    setTimeout('if($("td.dataTables_empty").html()!=undefined){$("#dt-table_paginate").css("display","none")}else{$("#dt-table_paginate").css("display","block")}',300);
+});
+
+init();
+//添加表格thead背景色
+$(document).ready(function(){
+    $('th').css({
+        "background-color":"#EEEEEE",
+        "color":"#858585"
+    });
+})
+</script>
