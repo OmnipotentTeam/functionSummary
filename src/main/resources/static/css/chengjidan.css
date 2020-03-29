@@ -1,0 +1,73 @@
+.background1{
+    background-position: top;
+    background-image: url('../img/background/background.png');
+    background-size: 100%;
+}
+/*标题*/
+.chengjidan{
+    text-align: center;
+    color: #094c2f;
+    padding-top:15% ;
+}
+/*个人头像*/
+.left_img{
+    float: left;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    width: 32%;
+    text-align: center;
+    line-height: 2.5;
+    padding-top: 4%;
+    font-size: 25px;
+    color: #989898;
+}
+/*个人信息*/
+.right_text{
+    float: left;
+    width: 34%;
+    padding-left: 3%;
+}
+/*图片*/
+.right_img{
+    float: left;
+    width: 30%;
+}
+.text_zidingyi{
+    font-size: 30px;
+    color: #806c63;
+}
+
+.img_img{
+    width: 32%;
+    margin-top: 7%;
+    margin-right: 3%;
+    /* padding-top: 4%; */
+    float: right;
+    border-radius: 92px;
+}
+.img_img2{
+    width: 75%;
+    margin-left: -15%;
+}
+/*维度图*/
+.weidu{
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+/*评语*/
+.pingyu{
+    border-bottom: 4px #c6f0d2  solid;
+    border-top: 2px #c6f0d2  solid;
+    border-left: 7px #c6f0d2  solid;
+    border-right: 7px #c6f0d2  solid;
+}
+/*设置禁用按钮悬停时显示禁用图标*/
+.jinyong:hover{
+    cursor: not-allowed;
+}
+#growthreport2{
+    background-color: #f9f9f9;
+    margin: 23% 20%;
+    display: none;
+}

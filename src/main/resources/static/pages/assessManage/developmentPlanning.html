@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>学生管理</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/ry-ui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/select2.css">
+    <link rel="stylesheet" href="../../js/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../../js/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="../../css/informationManagement/style.css">
+    <link rel="stylesheet" href="../../css/studentManagement/studentManagement.css">
+    <link rel="stylesheet" href="../../css/informationManagement/studentManagemen-2t.css">
+    <link rel="stylesheet" href="../../css/evaluationManagement/evaluationManagement.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/template.css">
+    <link href="https://cdn.bootcss.com/viewer.js/0.11.1/crocodoc.viewer.css" rel="stylesheet">
+    <style type="text/css">
+        .pull-left.pagination-detail{
+            display: none;
+        }
+        .pull-right.pagination{
+            position: absolute;
+            left: 45%;
+        }
+        table>thead>tr>th {
+            text-align: center;
+        }
+        .no-records-found td{
+            text-align: center!important;
+        }
+        .plan-result-label{
+            padding:10px 0;
+            font-weight: bold;
+        }
+        .search-bar {
+            box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+            width: 100%;
+            background: #fff;
+            border-radius: 5px;
+            margin: 10px 0 30px 0;
+            padding: 20px 0 10px 0;
+        }
+        .layui-inline .select,
+        .layui-inline input {
+            width: 190px;
+            height: 33px;
+            border-radius: 5px;
+            border: #E6E6E6 solid 1px;
+        }
+        .layui-btn-sm {
+            border-radius: 15px;
+        }
+        .layadmin-homepage-text-center  {
+            padding: 0 20px;
+            text-align: left;
+        }
+        .layadmin-homepage-panel .layadmin-homepage-about {
+            border-bottom: 1px solid #f6f6f6;
+            margin: 10px 0;
+        }
+        .layadmin-homepage-text-center div span,
+        .layadmin-homepage-text-center div p {
+            display: inline-block;
+            font-size: 1em;
+        }
+        .layui-form-item .layui-inline button {
+            border-radius: 5px;
+            background-color: #84CCC9;
+        }
+        .grid-demo .panel-body .layui-btn-group button {
+            border-radius: 5px;
+            padding: 0 25px;
+            margin: 0 30px;
+            color: #BCD1D5;
+        }
+        .grid-demo .panel-body .layui-btn-group button:active,
+        .grid-demo .panel-body .layui-btn-group button:hover {
+            color: #0C0C0C;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="layui-fluid" id="getInfo">
+    <div class="layui-card">
+<!--        <div class="layui-card-header">学生管理</div>-->
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item  search-bar">
+                <!--<div class="layui-inline" style="">-->
+                    <!--<label class="layui-form-label">学级</label>-->
+                    <!--<div class="layui-input-inline" style="margin-top: 4px">-->
+                        <!--<input type="text" name="startSchool" id="startSchool" placeholder="请输入" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^0-9]/g,'')">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="layui-inline">
+                    <label class="layui-form-label">学级</label>
+                    <div class="layui-input-inline">
+                        <select id="startSchool" class="select layui-input">
+                            <option value="0">请选择</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">学年</label>
+                    <div class="layui-input-inline">
+                        <select id="studentGrade" class="select layui-input">
+                            <option value="0">请选择</option>
+                            <option value="1">大学一年级</option>
+                            <option value="2">大学二年级</option>
+                            <option value="3">大学三年级</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">专业</label>
+                    <div class="layui-input-inline">
+                        <select id="majorId" class="select layui-input">
+                            <option value="0">请选择</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline" style="">
+                    <label class="layui-form-label">学号</label>
+                    <div class="layui-input-inline" style="margin-top: 4px">
+                        <input type="text" name="studentNo" id="studentNo" placeholder="请输入" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^0-9]/g,'')">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="studentNamee" name="studentNamee" placeholder="请输入" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="search-studentPhoneNumber" name="search-studentPhoneNumber" placeholder="请输入" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^0-9]/g,'')" maxlength="11">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm" id="searchBt" permission="sys:role:query"  style="margin-bottom: 10px;" onclick="getUserList()">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table  id="myTable" style="text-align: center" class="table table-striped table-hover"></table>
+        </div>
+    </div>
+</div>
+<div id="evaluationQueryStudent" style="display: none" >
+    <div class="layui-fluid layadmin-homepage-fluid">
+        <div class="layui-row layui-col-space8">
+            <div class="layui-col-md2">
+                <div class="layadmin-homepage-panel layadmin-homepage-shadow search-bar">
+                    <div class="layui-card text-center">
+                        <div class="layui-card-body">
+                            <div class="layadmin-homepage-pad-ver">
+                                <img style="width: 75%" id="develophead">
+                                <h4 class="layadmin-homepage-font" id="getName"></h4>
+                                <p class="layadmin-homepage-min-font" id="getNo"></p>
+                            </div>
+                            <button class="layui-btn layui-btn-fluid" onclick="comeBack()" permission="sys:role:query">返回</button>
+                        </div>
+                    </div>
+                    <p class="layadmin-homepage-about" style="text-align: center">
+                      关于我
+                    </p>
+                    <ul class="layadmin-homepage-list-group">
+                        <div class="layui-row layadmin-homepage-text-center">
+                            <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+                                <mdall>性别：</mdall>
+                                <p class="h4" id="getSex"></p>
+                            </div>
+                            <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+                                <mdall>年龄：</mdall>
+                                <p class="h4" id="getAge"></p>
+                            </div>
+                            <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+                                <mdall>学年：</mdall>
+                                <p class="h4" id="getGrade"></p>
+                            </div>
+                            <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+                                <mdall>专业：</mdall>
+                                <p class="h4" id="getMajor"></p>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-col-md10">
+                <div class="layui-fluid layadmin-homepage-content">
+                    <div class="layui-row layui-col-space20 layadmin-homepage-list-imgtxt">
+                        <div class="layui-col-md12">
+                            <div class="grid-demo search-bar">
+                                <div class="panel-body layadmin-homepage-shadow">
+                                    <div id="scroll">
+                                      <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+							                <button class="layui-btn" id="grade1" onclick="gradeEvaluation(this.id)" style="background-color:#1E9FFF;">大学一年级</button>
+							                <button class="layui-btn" id="grade2" onclick="gradeEvaluation(this.id)">大学二年级</button>
+							                <button class="layui-btn" id="grade3" onclick="gradeEvaluation(this.id)">大学三年级</button>
+							           </div>
+							           <div id ="growth">
+							              <ul id="test" class="container  anim-art " style="height:auto;width:100%"> 
+							              </ul>
+							           </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script src="../../js/bootstrap/bootstrap-table/css/js/bootstrap.js"></script>
+<script src="../../js/bootstrap/bootstrap-table/css/js/bootstrap-table.js"></script>
+<script src="../../js/bootstrap/bootstrap-table/css/js/bootstrap-table-zh-CN.js"></script>
+<script src="../../js/select2/select2.js"></script>
+<script src="../../js/plugin/echarts.js"></script>
+<script src="../../js/layer/layer.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/assessManage/developmentPlanning.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viewer.js/0.11.1/crocodoc.viewer.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //select2 渲染
+        $('.select').select2({
+            width: '190px',
+        })
+        $('.select2-container--default .select2-selection--single').css({
+            "height":"33px",
+            "border":"#E6E6E6 solid 1px",
+            "border-radius":"5px"})
+    })
+    //添加表格thead背景色
+    $(document).ready(function(){
+        $('thead').css({
+            "background-color":"#EEEEEE",
+            "color":"#858585"
+        });
+    })
+</script>
+</body>
+</html>

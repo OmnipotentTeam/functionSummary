@@ -1,0 +1,53 @@
+.stageI{
+    width: 100%;
+    height: 500px;
+    border:1px solid black;
+}
+.time{
+    width: 20%;
+    height: 100%;
+    margin-left: 5%;
+    background-color: #00F7DE;
+    float: left;
+}
+.getTime{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    background-color: #00B83F;
+    text-align: right;
+    line-height: 50px;
+}
+.info-background{
+    width:70%;
+    height: 100%;
+    margin-left: 2%;
+    background-color: #00F7DE;
+    float: left;
+
+}
+.getTittle {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    background-color: #00B83F;
+    text-align: center;
+    line-height: 50px;
+}
+.getContent{
+    width:100%;
+    height: 400px;
+    margin-top: 10px;
+    background-color: #00B83F;
+}
+.getTest{
+    width:60%;
+    height: 100%;
+    background-color: #9cb4c5;
+    margin-left: 1%;
+    float: left;
+}
+.testLabel{
+    margin-top: 20px;
+    margin-left: 15%;
+}

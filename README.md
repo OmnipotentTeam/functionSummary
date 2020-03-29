@@ -1,2 +1,3 @@
-# functionSummary
-学过的功能整合
+## apprenticeSystem
+
+信息类现代学徒制学生职业成长管理系统
