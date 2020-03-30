@@ -38,7 +38,7 @@ public class FileOperate {
         //将上传文件存储到服务器中
         file.transferTo(targetFile);
         //图片压缩处理方法
-        imgUtil.imageResize(targetFile,targetFile,200,200,0.7f);
+//        imgUtil.imageResize(targetFile,targetFile,200,200,0.7f);
         //创建文件夹
         if (!targetFile.getParentFile().exists()) {
             targetFile.getParentFile().mkdirs();
