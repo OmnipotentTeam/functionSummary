@@ -3163,7 +3163,7 @@ select[multiple].input-lg, textarea.input-lg {
 }
 
 .has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
-    color: #b94a48
+    color: #FF3A2B
 }
 
 .has-error .form-control {
@@ -3278,7 +3278,8 @@ select[multiple].input-lg, textarea.input-lg {
     .form-horizontal .control-label {
         text-align: right;
         margin-bottom: 0;
-        padding-top: 7px
+        padding-top: 7px;
+        color: #e8d9d9;
     }
 }
 

@@ -1737,15 +1737,17 @@ a cite {
     height: 38px;
     line-height: 38px;
     padding: 0 68px;
-    background-color: #009688;
+    /*background-color: #009688;*/
     color: #fff;
     white-space: nowrap;
     text-align: center;
     font-size: 14px;
     border: none;
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     cursor: pointer;
-    border-radius: 24px;
+    /*border-radius: 24px;*/
+    background: url("../../img/background/btn-save.png");
+    background-size: 100% 100%;
 }
 
 .layui-btn:hover {
@@ -1967,10 +1969,11 @@ a cite {
     float: left;
     display: block;
     padding: 9px 15px;
-    width: 90px;
+    width: 110px;
     font-weight: 400;
     line-height: 20px;
-    text-align: right
+    text-align: right;
+    color:#fff ;
 }
 .layui-form-label2 {
     float: left;
@@ -1995,7 +1998,7 @@ a cite {
 }
 
 .layui-input-block {
-    margin-left: 110px;
+    margin-left: 72px;
     min-height: 36px
 }
 
@@ -2007,8 +2010,10 @@ a cite {
 .layui-form-item .layui-input-inline {
     float: left;
     width: 190px;
-    margin-right: 10px
+    /*margin-right: 10px*/
+    margin:-0.1%;
 }
+
 
 .layui-form-text .layui-input-inline {
     width: auto
@@ -3398,7 +3403,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this {
-    background-color: #5FB878;
+    background-color: #649aa1;
     color: #fff
 }
 

@@ -7,36 +7,29 @@
         .form-horizontal{
             width: 50%;
             height: 100%;
-            margin-top: 2%;
             margin-left: 25%;
             padding-left: 5%;
             padding-right: 7%;
-            padding-top: 3%;
+            padding-top: 4%;
             padding-bottom: 6%;
             border-radius: 24px;
 float: top;
         }
+        body{
+            overflow-y:hidden;
+        }
     </style>
 </head>
-<body style="background-image: url('../../img/banner.jpg');width: 100%;background-repeat: no-repeat;
+<body style="background-image: url('../../img/background/background-change.png');width: 100%;background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-            background-size: cover;">
-<div style="background-color: silver;height: 626px;width: 100%;opacity: 0.5;position: fixed"></div>
+            background-size: 100% 100%;">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"  id="all_l">
+    <div style="text-align: center;color: #dedede;">
+            <h1>个人信息</h1>
+    </div>
 	<form class="form-horizontal" onsubmit="return false" id="form">
-
-            <div style="width: 50%;  height: 504px;background-color: #ffffff;position: absolute;margin-left: -63px;margin-top: 0px;border-radius: 24px ; opacity: 0.8">
-
-             </div>
         <fieldset>
-
-            <div class="form-group">
-                <label class="col-md-10 " ><br> <h2>个人信息：</h2></label>
-                <div class="col-md-2">
-
-                </div>
-            </div>
 			<input type="hidden" id="id" name="id">
 			<div class="form-group">
 				<label class="col-md-2 control-label">用户名</label>
@@ -57,7 +50,7 @@ float: top;
                 <div class="col-md-10">
                     <input class="form-control" placeholder="手机号" type="text" maxlength="11" name="phone" id="phone"
                            onblur="testPhone()">
-                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="username" data-bv-result="INVALID" style="color:#b94a48;display: none">手机号格式错误</small>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="username" data-bv-result="INVALID" style="margin-bottom: -3%;color: rgb(255, 58, 43);display: none">手机号格式错误</small>
                 </div>
             </div>
             <div class="form-group">
