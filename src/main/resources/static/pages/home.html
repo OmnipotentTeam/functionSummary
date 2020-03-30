@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1226"/>
+    <style>
+        .back-Img {
+            background: url(../img/background/background-index.png  );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .welcome {
+            margin: 5vw auto;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="back-Img">
+<div style="width: 100%;height: 100%;">
+    <div style="width: 55%;height: 100%;background:url('../img/background/div-border2.png');
+            background-size: 100% 100%;float: left">
+
+    </div>
+    <div style="float: right;width: 45%;height: 100%;">
+        <div style="width: 100%; height: 50%;">
+            <div style="height: 98%;width: 50%; float:left;margin-top: 2%; background:url('../img/background/div-border.png');background-repeat: no-repeat;
+            background-position: center;background-size: 100% 100%">
+
+            </div>
+            <div style="height: 98%;width: 50%; float: right; margin-top: 2%; background:url('../img/background/div-border.png');background-position: center;background-size: 100% 100%">
+
+            </div>
+        </div>
+        <div style="width: 102%; height: 47%;margin-left: -1%; background:url('../img/background/div-border2.png');background-position: center;background-size: 100% 100%">
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        $("body").css({"height":$(window).height(),"width":$(window).width(),"margin":"0","padding":"0","overflow":"hidden"});
+
+    })
+    $(window).resize(function () {
+        var width = $(window).width();
+        var height = $(window).height();
+        $("body").css({"height":height,"width":width});
+    })
+</script>
+</html>
