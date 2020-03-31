@@ -2225,7 +2225,7 @@ pre code {
     }
 
     .col-md-12 {
-        width: 100%
+        width: 69%
     }
 
     .col-md-11 {
@@ -2664,7 +2664,7 @@ th {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
-    border-top: 1px solid #ddd
+    border-top: 1.2px solid #ddd
 }
 
 .table > thead > tr > th {
@@ -2697,7 +2697,15 @@ th {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #f9f9f9
+    background-color: #9fa4da
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #bdbfd8
+}
+
+.table-striped > tbody > tr:nth-of-type(branch collapsed) {
+    background-color: #bdbfd8
 }
 
 .table-hover > tbody > tr:hover {
@@ -3280,6 +3288,7 @@ select[multiple].input-lg, textarea.input-lg {
         margin-bottom: 0;
         padding-top: 7px;
         color: #e8d9d9;
+        /*margin-left: 15%;*/
     }
 }
 
@@ -5015,7 +5024,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 
 .pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
     color: #999;
-    background-color: #fff;
+    background-color: #a8c2e2;
     border-color: #ddd;
     cursor: not-allowed
 }

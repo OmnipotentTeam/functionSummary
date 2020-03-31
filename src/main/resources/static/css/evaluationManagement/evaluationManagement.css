@@ -6,10 +6,6 @@
 table {
     border-color: #e6e6e6;
 }
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    background-color: #009688;
-    border-color: #009688;
-}
 .pagination>li>a, .pagination>li>span {
     color: #009688;
 }
@@ -183,7 +179,7 @@ table {
 
 .search-collapse {
     width: 100%;
-    background: #fff;
+    /*background: #fff;*/
     border-radius: 5px;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -191,7 +187,7 @@ table {
     padding-right: 30px;
     padding-bottom: 10px;
     padding-top: 25px;
-    box-shadow: 1px 1px 3px #9c9c9c;
+    /*box-shadow: 1px 1px 3px #9c9c9c;*/
 
 }
 

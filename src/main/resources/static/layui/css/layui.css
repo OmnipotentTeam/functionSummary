@@ -874,7 +874,8 @@ a cite {
 .layui-fluid {
     position: relative;
     margin: 0 auto;
-    padding: 0 15px
+    padding: 4% 5%;
+    /*padding: 0 15px*/
 }
 
 .layui-row:after, .layui-row:before {
@@ -1426,7 +1427,7 @@ a cite {
 }
 
 .layui-col-space15 > * {
-    padding: 7.5px
+    padding: 56.5px
 }
 
 .layui-col-space18 {
@@ -1606,7 +1607,7 @@ a cite {
 .layui-card {
     margin-bottom: 15px;
     border-radius: 2px;
-    background-color: #F7F7F7;
+    /*background-color: #F7F7F7;*/
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05)
 }
 
@@ -1629,7 +1630,7 @@ a cite {
 }
 
 .layui-card-body {
-    padding: 10px 15px;
+    padding: 0 0 0 6%;
     line-height: 24px
 }
 
@@ -1794,9 +1795,9 @@ a cite {
 }
 
 .layui-btn-primary {
-    border: 1px solid #C9C9C9;
-    background-color: #fff;
-    color: #555
+    /*border: 1px solid #C9C9C9;*/
+    /*background-color: #fff;*/
+    color: #fff
 }
 
 .layui-btn-primary:hover {
@@ -1998,8 +1999,9 @@ a cite {
 }
 
 .layui-input-block {
-    margin-left: 72px;
-    min-height: 36px
+    margin-left: 8%;
+    min-height: 36px;
+    padding-top: 2%;
 }
 
 .layui-input-inline {
@@ -4374,60 +4376,4 @@ body .layui-util-face .layui-layer-content {
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: Helvetica Neue, Helvetica, PingFang SC, \5FAE\8F6F\96C5\9ED1, Tahoma, Arial, sans-serif;
     font-size: initial;
-}
-/*整理编辑按钮样式*/
-.btn-edit{
-background-color: #0aa66e;
-}
-/*整理删除按钮样式*/
-.btn-del{
-    background-color: red;
-}
-/*整理查看按钮样式*/
-.btn-see{
-    background-color: #0b72a6;
-}
-/*整理点评按钮样式*/
-.btn-com{
-    background-color: #72cf67;
-}
-/*整理发布按钮样式*/
-.btn-rel{
-    background-color: #9d40a6;
-}
-/*整理详情按钮样式*/
-.btn-dtl{
-    background-color: #d26e00;
-}
-/*整理成长轨迹按钮样式*/
-.btn-grow{
-    background-color: #989781;
-}
-/*整理成长轨迹按钮样式*/
-.btn-dayi{
-    background-color: #5884e8;
-}
-/*整理成长轨迹按钮样式*/
-.btn-daer{
-    background-color: #419856;
-}
-/*整理成长轨迹按钮样式*/
-.btn-dasan{
-    background-color: #983440;
-}
-/*整理成长轨迹按钮样式*/
-.btn-zong{
-    background-color: #775298;
-}
-/*整理成长轨迹按钮样式*/
-.btn-jinyong{
-    background-color: rgba(142, 15, 73, 0.14);
-}
-/*整理成长轨迹按钮样式*/
-.btn-jinyong2{
-    background-color: rgba(54, 142, 41, 0.14);
-}
-/*整理成长轨迹按钮样式*/
-.btn-jinyong3{
-    background-color: #e1d3ed
 }

@@ -2,18 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>角色列表</title>
 <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../../layui/css/layui.css">
     <link rel="stylesheet" href="../../css/evaluationManagement/evaluationManagement.css">
-    <link rel="stylesheet" href="../../css/admin.css">
     <style>
-        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-            background-color: #009688;
-            border-color: #009688;
-        }
-        .layui-table-tool-self{
+        yui-table-tool-self{
             float: right;
         }
         .dataTables_info{
@@ -43,15 +38,22 @@
         }
         .form-inline .form-group button {
             border-radius: 5px;
-            background-color: #84CCC9;
         }
-        .layui-table-tool-temp .form-inline .form-group button:last-of-type {
-            background-color: #6CC3F7;
+        .layui-fluid1{
+            position: relative;
+            margin: 0 auto;
+            padding: 0 5%;
         }
     </style>
 </head>
-<body>
-<div class="layui-fluid">
+<body style="background-image: url('../../img/background/background-change.png');width: 100%;background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: 100% 100%;">
+<div style="text-align: center;color: #dedede;">
+    <h1 style="font-size: 28px;line-height: 2.6;">角色列表</h1>
+</div>
+<div class="layui-fluid1">
     <div class="layui-card">
 <!--        <div class="layui-card-header">角色列表</div>-->
         <div class="layui-card-body" style="padding: 15px;">
@@ -60,23 +62,14 @@
                     <form class="form-inline search-collapse " onsubmit="return false" style="padding-top: 15px;">
                         <div class="layui-inline">
                             <label class="layui-form-label" style="padding: 9px">角色名称</label>
-                            <!--<div class="layui-input-inline">-->
-                                <!--<input type="text" name="taskName" id="taskName" placeholder="请输入" autocomplete="off" class="layui-input">-->
-                            <!--</div>-->
                         </div>
                         <div class="form-group">
-                            <!--<input id="name" type="text" class="form-control" placeholder="搜索角色名称" >-->
-                            <input type="text" name="taskName" id="name" placeholder="请输入" autocomplete="off" class="layui-input" style="width:190px;display: inline;height: 33px;border-radius: 5px;">
+                            <input type="text" name="taskName" id="name" placeholder="请输入" autocomplete="off" class="layui-input" style="width:190px;display: inline;height: 33px;border-radius: 5px;background-color: #cbcee6">
                             <button id="searchBt" class="layui-btn layui-btn-sm searchleft" permission="sys:role:query"><i class="layui-icon">&#xe615;</i>搜索</button>
                             <button class="layui-btn layui-btn-sm" onclick="location.href='addRole.html'" permission="sys:role:add">
                                 <i class="layui-icon">&#xe608;</i> 添加
                             </button>
                         </div>
-<!--                        <div class="layui-table-tool-self">-->
-<!--                            <button class="layui-btn layui-btn-sm" onclick="location.href='addRole.html'" permission="sys:role:add">-->
-<!--                                <i class="layui-icon">&#xe608;</i> 添加-->
-<!--                            </button>-->
-<!--                        </div>-->
                     </form>
 
                 </div>
@@ -87,10 +80,10 @@
                     <thead>
                     <tr></tr>
                     <tr>
-                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">角色名</th>
-                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">具体描述</th>
-                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">创建时间</th>
-                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;">操作</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;background-color: rgb(19, 24, 82);color: rgb(218, 218, 218);">角色名</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;background-color: rgb(19, 24, 82);color: rgb(218, 218, 218);">具体描述</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;background-color: rgb(19, 24, 82);color: rgb(218, 218, 218);">创建时间</th>
+                        <th style="border-bottom: none;pointer-events: none;padding-right: 8px;background-color: rgb(19, 24, 82);color: rgb(218, 218, 218);">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -183,11 +176,5 @@ $("#searchBt").click(function(){
 });
 
 init();
-//添加表格thead背景色
-$(document).ready(function(){
-    $('th').css({
-        "background-color":"#EEEEEE",
-        "color":"#858585"
-    });
-})
+
 </script>

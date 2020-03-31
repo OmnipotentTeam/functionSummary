@@ -31,7 +31,7 @@ function initRolesAddUser() {
 			var l ="";
             var p = 0 ;
 			for(var k = 0; k<j ;k++){
-				l += "<tr><td id='roleTd"+p+"'></td><td id='roleTd"+(p+1)+"'></td></tr>";
+				l += "<tr><td style='width: 70%;' id='roleTd"+p+"'></td><td id='roleTd"+(p+1)+"'></td></tr>";
 				p=p+2;
 			}
 			r.append(l);
@@ -39,7 +39,7 @@ function initRolesAddUser() {
                 var d = data[i];
                 var id = d['id'];
                 var name = d['name'];
-                var t = "<label><input type='checkbox' value='" + id + "'>"
+                var t = "<label style='color: #fff;'><input type='checkbox' value='" + id + "'>"
                     + name + "</label>";
                 $("#roleTd"+i).append(t);
             }
